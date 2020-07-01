@@ -7,10 +7,15 @@ mydb = mysql.connector.connect(host = "localhost",
                               )
 
 mycursor = mydb.cursor()
-          
-mycursor.execute("SELECT * FROM Student")
 
-myresult = mycursor.fetchall()
+sqlformula = "INSERT INTO Student (name,age) VALUES  (%s,%s)"
+students = [("Raechel",22),("Bob",48),("Maheep",24)] 
+           
 
-for row in myresult:
-  print(row)
+mycursor.executemany(sqlformula,students)
+mydb.commit()
+
+
+
+#for db in mycursor:
+#  print(db)
